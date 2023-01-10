@@ -1,24 +1,11 @@
 import React from 'react';
 import { SocialIcon } from 'react-social-icons';
-import { useStytch } from '@stytch/nextjs';
 
 const Signup = () => {
-  const stytchClient = useStytch();
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
     const { email } = Object.fromEntries(form.entries());
-
-    // try {
-    //   stytchClient.magicLinks.email.loginOrCreate(email, {
-    //     login_magic_link_url: 'http://localhost:3000/authenticate',
-    //     login_expiration_minutes: 90,
-    //     signup_magic_link_url: 'http://localhost:3000/authenticate',
-    //     signup_expiration_minutes: 90,
-    //   });
-    // } catch (er) {
-    //   er && console.log(er);
-    // }
   };
 
   return (
