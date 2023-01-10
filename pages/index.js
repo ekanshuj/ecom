@@ -34,7 +34,7 @@ export default function Index(props) {
   )
 };
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const { data } = await axios.get('https://dummyjson.com/products?limit=100');
   return {
     props: data
