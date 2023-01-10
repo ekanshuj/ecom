@@ -21,7 +21,7 @@ const Header = () => {
           next-ecommerce
         </div>
         <SocialIcon
-          url="https://github.com/ekanshuj"
+          url="https://github.com/ekanshuj/next-ecommerce"
           bgColor="transparent"
           fgColor="white"
         />

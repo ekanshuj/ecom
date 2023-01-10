@@ -2,11 +2,11 @@ import React from 'react';
 import Image from 'next/image';
 import image from '../src/images/image.png';
 
-const Home = ({ props: { products: data } }) => {
-  const [products, setProducts] = React.useState(data);
+const Home = () => {
+  // const [products, setProducts] = React.useState(data);
   return (
     <div className='text-white py-1 w-full'>
-      <div className=' flex items-center justify-center flex-wrap gap-5 py-5'>
+      {/* <div className=' flex items-center justify-center flex-wrap gap-5 py-5'>
         {
           products && products.map(({ id, title, thumbnail }) => {
             return (
@@ -22,7 +22,7 @@ const Home = ({ props: { products: data } }) => {
             )
           })
         }
-      </div>
+      </div> */}
       <div className='py-1 text-centerb bg-gray-500 text-center cursor-pointer rounded-[2px]' onClick={() => window.scrollTo(0, 0)}>
         <span className='uppercase font-bold tracking-[3px] text-[0.7rem]'>Back to Top</span>
       </div>
