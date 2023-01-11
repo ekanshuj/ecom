@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { SocialIcon } from 'react-social-icons';
-import { auth } from '../../src/config/firebase-config';
+import { auth } from '../src/config/firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
 const Product = () => {

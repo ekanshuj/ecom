@@ -6,6 +6,8 @@ import { useRouter } from 'next/router';
 import { auth } from '../src/config/firebase-config';
 
 import avatar from '../src/assets/images/avatar.svg'
+import cart from '../src/assets/images/cart.svg'
+import Link from 'next/link';
 
 const Header = () => {
   const [user] = useAuthState(auth);
@@ -39,10 +41,16 @@ const Header = () => {
       </nav>
       <div className='flex items-center justify-center'>
         <div className='w-full my-2 px-3 sm:px-1 flex-1'>
-          <input className='w-full h-12 rounded-[3px] px-1text-[1.1rem] placeholder:text-[1rem] placeholder:font-medium placeholder:tracking-[1px] placeholder:px-2 focus:outline-none' type="search" name="search" placeholder='Search for the products' />
+          <input className='w-full h-12 rounded-[3px] px-1 text-[1.1rem] placeholder:text-[0.8rem] sm:placeholder:text-[1rem] placeholder:font-medium placeholder:tracking-[1px] focus:outline-none' type="search" name="search" placeholder='Search for the products' />
         </div>
         {/* <div className='px-2'> */}
-        <div className='px-2'>
+        <div className='px-1 flex items-center justify-center'>
+          <Link href={"/cart"}>
+            <div className='flex items-center justify-center'>
+              <p className='text-white underline underline-offset-2 px-1 text-xl font-semibold'>0</p>
+              <Image className='invert' src={cart} alt={"cart"} height={35} width={35} />
+            </div>
+          </Link>
           <div className='flex items-center justify-center' style={user?.photoURL === null && user?.email ? divStyle : none} onClick={handleClick}>
             <span className='text-white text-2xl font-semibold'>{user?.email.charAt(0).toUpperCase()}</span>
           </div>
@@ -50,7 +58,7 @@ const Header = () => {
             user?.photoURL ?
               < Image onClick={handleClick} className='rounded-full cursor-pointer' src={user?.photoURL && `${user.photoURL}`} alt={user?.displayName} width={40} height={40} />
               : user === null &&
-              < Image onClick={handleClick} className='rounded-full cursor-pointer invert' src={avatar} alt={"avatar"} width={50} height={50} />
+              < Image onClick={handleClick} className='rounded-full cursor-pointer invert' src={avatar} alt={"avatar"} width={45} height={45} />
           }
         </div>
       </div>

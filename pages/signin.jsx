@@ -27,6 +27,16 @@ const Login = () => {
         progress: undefined,
         theme: "dark",
       });
+      er.code === 'auth/invalid-api-key' && toast.error('Internal server error.', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
   };
   useEffect(() => {

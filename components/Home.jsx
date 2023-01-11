@@ -11,11 +11,11 @@ const Home = () => {
             const Name = name[0].toUpperCase() + name.substring(1);
             return (
               <div key={id} className='my-2 sm:my-0 sm:flex sm:justify-center sm:items-center sm:flex-col'>
-                <Link href={`/colors/${name}`}>
+                <Link href={`/${name}`}>
                   <div className='w-full h-[170px] sm:w-[360px] sm:h-[150px]' style={{ background: `${name}` }}></div>
-                  <div className='flex items-center justify-between px-1 w-full'>
-                    <span className=''>{Name}</span>
-                    <span>Rs.{price}</span>
+                  <div style={{ border: `2px solid ${name}` }} className='flex items-center justify-between px-1 w-full'>
+                    <span style={{ color: `${name}` }} className=''>{Name}</span>
+                    <span style={{ color: `${name}` }}>Rs.{price}</span>
                   </div>
                 </Link>
               </div>
