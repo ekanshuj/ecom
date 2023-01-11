@@ -1,17 +1,71 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { SocialIcon } from 'react-social-icons';
+import { useRouter } from 'next/router';
+import { auth } from '../src/config/firebase-config';
+import { createUserWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+// import Cookies from 'universal-cookie';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+
 
 const Signup = () => {
-  const handleSubmit = (e) => {
+  const router = useRouter();
+  // const cookies = new Cookies();
+
+  const [user, loading, error] = useAuthState(auth);
+  const provider = new GoogleAuthProvider();
+  const googleHandle = async () => {
+    try {
+      await signInWithPopup(auth, provider);
+    } catch (er) {
+      er.code === 'auth/network-request-failed' && toast.error('Network request failed : Try again later.', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    }
+  };
+  useEffect(() => {
+    user && router.push("/");
+  }, [user, router]);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = new FormData(e.target);
-    const { email } = Object.fromEntries(form.entries());
+    const { email, password } = Object.fromEntries(form.entries());
+    try {
+      await createUserWithEmailAndPassword(auth, email, password);
+    } catch (er) {
+      er.code === 'auth/email-already-in-use' && toast.error('User Already Exists', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+    };
+    onAuthStateChanged(auth, (currentUser) => {
+      if (currentUser) {
+        // cookies.set('user', currentUser.uid);
+        router.push("/");
+      };
+    })
   };
 
   return (
     <main className='h-screen max-w-screen bg-black overflow-y-hidden'>
       <nav className='flex items-center justify-between flex-col sm:flex-row px-2 mx-auto max-w-[70rem]'>
-        <div className='text-white font-mono font-black tracking-[5px] text-[1.5rem]'>
+        <div className='text-white font-mono font-black tracking-[5px] text-[1.5rem] cursor-pointer' onClick={() => router.push("/")}>
           next-ecommerce
         </div>
         <SocialIcon
@@ -24,9 +78,9 @@ const Signup = () => {
         <div className='border-2 border-white sm:w-[40rem] lg:w-[50rem] h-[20rem] p-2 rounded-[3px]'>
           <div className='h-full w-[20rem] sm:w-[25rem] mx-auto'>
             <div className='text-center text-[1.5rem] font-extrabold'>
-              Get Started
+              Sign up to get Started
             </div>
-            <div className='flex items-center justify-center bg-black text-white border-2 border-white h-12 rounded-[3px] mt-2'>
+            <div className='flex items-center justify-center bg-black text-white border-2 border-white h-12 rounded-[3px] mt-2 cursor-pointer' onClick={googleHandle}>
               <button className='tracking-[1px] font-medium text-[1.1rem]'>Continue with Google</button>
             </div>
             <div className='text-center py-1'>
@@ -46,6 +100,7 @@ const Signup = () => {
           </div>
         </div>
       </section>
+      <ToastContainer />
     </main>
   )
 }

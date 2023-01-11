@@ -1,23 +1,37 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React from 'react';
 import { SocialIcon } from 'react-social-icons'
+import Image from 'next/image';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { useRouter } from 'next/router';
+import { auth } from '../src/config/firebase-config';
+
+// import Cookies from 'universal-cookie';
+
+import avatar from '../src/assets/images/avatar.png'
 
 const Header = () => {
-  // const [categories, setCategories] = useState([]);
-  // useEffect(() => {
-  //   (async function productData() {
-  //     const { data } = await axios.get('https://dummyjson.com/products/categories');
-  //     const A = data.slice(0, 7);
-  //     const B = ["male", "female"];
-  //     const C = data.splice(16, 9);
-  //     const D = A.concat(B, C)
-  //     setCategories(D);
-  //   }());
-  // }, [])
+  // const cookies = new Cookies();
+  const [user] = useAuthState(auth);
+  const router = useRouter();
+  const handleClick = () => {
+    user ? router.push("/account") : router.push("/signin");
+  };
+
+  const divStyle = {
+    height: "45px",
+    width: "45px",
+    borderRadius: "999px",
+    cursor: "pointer",
+    border: "2px solid white"
+  };
+  const none = {
+    display: "none"
+  };
+
   return (
     <header className='bg-black'>
-      <nav className='flex items-center justify-between flex-col sm:flex-row px-2'>
-        <div className='text-white font-mono font-black tracking-[5px] text-[1.5rem]'>
+      <nav className='flex items-center justify-between flex-col sm:flex-row px-2 sm:px-1'>
+        <div className='text-white font-mono font-black tracking-[5px] text-[1.07rem] sm:text-[1.5rem] cursor-pointer' onClick={() => router.push("/")}>
           next-ecommerce
         </div>
         <SocialIcon
@@ -26,23 +40,22 @@ const Header = () => {
           fgColor="white"
         />
       </nav>
-      <div className="info text-white bg-[#2d4a56] flex items-center justify-center">
-        /--Categories--/
-      </div>
-      {/* <div className='info text-white bg-[#2d4a56] flex justify-evenly items-center'>
-        <span>All</span>
-        {
-          categories && categories.map((c, i) => {
-            return (
-              <span key={i} className='text-[1rem] tracking-[1px]'>
-                {c}
-              </span>
-            )
-          })
-        }
-      </div> */}
-      <div className='w-full my-2'>
-        <input className='w-full h-12 rounded-[3px] px-1 text-[1.1rem] placeholder:text-[1rem] placeholder:font-medium placeholder:tracking-[1px] placeholder:px-2 focus:outline-none' type="search" name="search" placeholder='Search for the products' />
+      <div className='flex items-center justify-center'>
+        <div className='w-full my-2 px-3 sm:px-1 flex-1'>
+          <input className='w-full h-12 rounded-[3px] px-1text-[1.1rem] placeholder:text-[1rem] placeholder:font-medium placeholder:tracking-[1px] placeholder:px-2 focus:outline-none' type="search" name="search" placeholder='Search for the products' />
+        </div>
+        {/* <div className='px-2'> */}
+        <div className='px-2'>
+          <div className='flex items-center justify-center' style={user?.photoURL === null && user?.email ? divStyle : none} onClick={handleClick}>
+            <span className='text-white text-2xl font-semibold'>{user?.email.charAt(0).toUpperCase()}</span>
+          </div>
+          {
+            user?.photoURL ?
+              < Image onClick={handleClick} className='rounded-full cursor-pointer' src={user?.photoURL && `${user.photoURL}`} alt={user?.displayName} width={40} height={40} />
+              : user === null &&
+              < Image onClick={handleClick} className='rounded-full cursor-pointer' src={avatar} alt={"avatar"} width={40} height={40} />
+          }
+        </div>
       </div>
     </header>
   )
