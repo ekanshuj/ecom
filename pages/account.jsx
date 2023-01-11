@@ -7,7 +7,7 @@ import Head from 'next/head';
 import { SocialIcon } from 'react-social-icons';
 import Image from 'next/image';
 
-import avatar from '../src/assets/images/avatar.png'
+import avatar from '../src/assets/images/avatar.svg'
 
 const Account = () => {
   const [user] = useAuthState(auth);

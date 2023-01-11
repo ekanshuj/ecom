@@ -4,7 +4,6 @@ import { useRouter } from 'next/router';
 import { auth } from '../src/config/firebase-config';
 import { createUserWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
-// import Cookies from 'universal-cookie';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -12,8 +11,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
   const router = useRouter();
-  // const cookies = new Cookies();
-
   const [user, loading, error] = useAuthState(auth);
   const provider = new GoogleAuthProvider();
   const googleHandle = async () => {
@@ -55,10 +52,7 @@ const Signup = () => {
       });
     };
     onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        // cookies.set('user', currentUser.uid);
-        router.push("/");
-      };
+      currentUser && router.push("/")
     })
   };
 

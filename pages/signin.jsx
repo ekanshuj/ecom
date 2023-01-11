@@ -8,9 +8,6 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import Cookies from 'universal-cookie';
-const cookies = new Cookies();
-
 const Login = () => {
   const router = useRouter();
 
@@ -57,10 +54,7 @@ const Login = () => {
       }
     };
     onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        // cookies.set('user', currentUser.uid);
-        router.push("/");
-      };
+      currentUser && router.push("/");
     })
   };
 

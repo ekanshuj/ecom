@@ -5,12 +5,9 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { useRouter } from 'next/router';
 import { auth } from '../src/config/firebase-config';
 
-// import Cookies from 'universal-cookie';
-
-import avatar from '../src/assets/images/avatar.png'
+import avatar from '../src/assets/images/avatar.svg'
 
 const Header = () => {
-  // const cookies = new Cookies();
   const [user] = useAuthState(auth);
   const router = useRouter();
   const handleClick = () => {
@@ -53,7 +50,7 @@ const Header = () => {
             user?.photoURL ?
               < Image onClick={handleClick} className='rounded-full cursor-pointer' src={user?.photoURL && `${user.photoURL}`} alt={user?.displayName} width={40} height={40} />
               : user === null &&
-              < Image onClick={handleClick} className='rounded-full cursor-pointer' src={avatar} alt={"avatar"} width={40} height={40} />
+              < Image onClick={handleClick} className='rounded-full cursor-pointer invert' src={avatar} alt={"avatar"} width={50} height={50} />
           }
         </div>
       </div>
