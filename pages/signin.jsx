@@ -8,7 +8,7 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-const Login = () => {
+const Signin = () => {
   const router = useRouter();
 
   const [user, loading, error] = useAuthState(auth);
@@ -50,18 +50,26 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
     } catch (er) {
-      if (er.code === 'auth/wrong-password' || 'auth/user-not-found') {
-        toast.error('Incorrect Credentials', {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "dark",
-        });
-      }
+      er.code === 'auth/wrong-password' && toast.error('Incorrect Credentials', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
+      er.code === 'auth/user-not-found' && toast.error('No user found', {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     };
     onAuthStateChanged(auth, (currentUser) => {
       currentUser && router.push("/");
@@ -117,4 +125,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Signin

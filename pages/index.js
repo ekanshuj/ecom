@@ -6,7 +6,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 const inter = Inter({ subsets: ['latin'] })
 const query = new QueryClient();
 
-import { Header, Home } from '../components'
+import { Header, Home } from '../src/components'
 
 export default function Index() {
   return (

@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { SocialIcon } from 'react-social-icons'
 import Image from 'next/image';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useRouter } from 'next/router';
-import { auth } from '../src/config/firebase-config';
+import { auth } from '../config/firebase-config';
+import CartContext from '../context/CartContext';
 
-import avatar from '../src/assets/images/avatar.svg'
-import cart from '../src/assets/images/cart.svg'
+import avatar from '../assets/images/avatar.svg'
+import cart from '../assets/images/cart.svg'
 import Link from 'next/link';
 
 const Header = () => {
+  const { cartProducts } = useContext(CartContext);
   const [user] = useAuthState(auth);
   const router = useRouter();
   const handleClick = () => {
@@ -17,11 +19,12 @@ const Header = () => {
   };
 
   const divStyle = {
-    height: "45px",
-    width: "45px",
+    aspectRation: '1/1',
+    width: "35px",
     borderRadius: "999px",
     cursor: "pointer",
-    border: "2px solid white"
+    border: "3px solid white",
+    marginInline: "5px"
   };
   const none = {
     display: "none"
@@ -39,24 +42,23 @@ const Header = () => {
           fgColor="white"
         />
       </nav>
-      <div className='flex items-center justify-center'>
+      <div className='flex items-center justify-center flex-col sm:flex-row'>
         <div className='w-full my-2 px-3 sm:px-1 flex-1'>
           <input className='w-full h-12 rounded-[3px] px-1 text-[1.1rem] placeholder:text-[0.8rem] sm:placeholder:text-[1rem] placeholder:font-medium placeholder:tracking-[1px] focus:outline-none' type="search" name="search" placeholder='Search for the products' />
         </div>
-        {/* <div className='px-2'> */}
-        <div className='px-1 flex items-center justify-center'>
+        <div className='px-1 flex items-center justify-center gap-x-1 sm:gap-x-0'>
           <Link href={"/cart"}>
             <div className='flex items-center justify-center'>
-              <p className='text-white underline underline-offset-2 px-1 text-xl font-semibold'>0</p>
-              <Image className='invert' src={cart} alt={"cart"} height={35} width={35} />
+              <p className='text-white underline underline-offset-2 px-1 text-xl font-semibold'>{cartProducts.length}</p>
+              <Image className='invert' src={cart} alt={"cart"} height={30} width={30} />
             </div>
           </Link>
           <div className='flex items-center justify-center' style={user?.photoURL === null && user?.email ? divStyle : none} onClick={handleClick}>
-            <span className='text-white text-2xl font-semibold'>{user?.email.charAt(0).toUpperCase()}</span>
+            <span className='text-white text-xl font-semibold'>{user?.email.charAt(0).toUpperCase()}</span>
           </div>
           {
             user?.photoURL ?
-              < Image onClick={handleClick} className='rounded-full cursor-pointer' src={user?.photoURL && `${user.photoURL}`} alt={user?.displayName} width={40} height={40} />
+              < Image onClick={handleClick} className='rounded-full cursor-pointer' src={user?.photoURL && `${user.photoURL}`} alt={user?.displayName} width={45} height={45} />
               : user === null &&
               < Image onClick={handleClick} className='rounded-full cursor-pointer invert' src={avatar} alt={"avatar"} width={45} height={45} />
           }
