@@ -18,7 +18,7 @@ export default function Index() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <QueryClientProvider client={query}>
-        <main className='min-h-screen max-w-screen bg-black'>
+        <main className='min-h-screen max-w-screen'>
           <div className="app mx-auto max-w-[70rem]">
             <Header />
             <Home />

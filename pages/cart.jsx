@@ -1,47 +1,53 @@
-import Head from 'next/head'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import React, { useContext, useState } from 'react'
-import { SocialIcon } from 'react-social-icons'
-import CartContext from '../src/context/CartContext'
+import Head from 'next/head';
+import React, { useContext, useState } from 'react';
+import Image from 'next/image';
+import CartContext from '../src/context/CartContext';
+
+import cross from '../src/assets/images/cross.svg'
 
 const Cart = () => {
-  const router = useRouter();
-  const { cartProducts } = useContext(CartContext);
+  const { cartProducts, removeFromCart } = useContext(CartContext);
+  const [newPrice, setNewPrice] = useState();
   return (
     <>
       <Head>
         <title>next-ecommerce | Cart</title>
         <meta name="keyword" content="cart" />
       </Head>
-      <main className='min-h-screen max-w-screen bg-black'>
-        <div className="product mx-auto max-w-[70rem] px-2 sm:px-1">
-          <nav className='flex items-center justify-between flex-col sm:flex-row'>
-            <div className='text-white font-mono font-black tracking-[5px] text-[1.07rem] sm:text-[1.5rem] cursor-pointer' onClick={() => router.push("/")}>
-              next-ecommerce
+      <main className='min-h-screen max-w-screen'>
+        <div className="product mx-auto max-w-[70rem] px-2 sm:px-0">
+          <section className='text-white w-full py-2'>
+            <div className='w-full py-5 text-center'>
+              <span className='text-3xl uppercase tracking-[10px] font-bold'>shopping cart</span>
             </div>
-            <SocialIcon
-              url="https://github.com/ekanshuj/next-ecommerce"
-              bgColor="transparent"
-              fgColor="white"
-            />
-          </nav>
-          <section className='text-white flex items-center justify-center flex-col my-10'>
-            <div className='sm:flex sm:items-center sm:justify-center sm:flex-wrap sm:gap-3 lg:gap-4 px-[0.6rem] sm:px-0'>
+            <div className='sm:flex sm:items-center sm:justify-center sm:flex-wrap sm:gap-3 lg:gap-4 my-5'>
               {
                 cartProducts?.map(({ name, price }, i) => {
                   const Name = name[0].toUpperCase() + name.substring(1);
                   return (
                     <div key={i} className='my-2 sm:my-0 sm:flex sm:justify-center sm:items-center sm:flex-col'>
-                      <Link href={`/${name}`}>
-                        <div className='w-full h-[170px] sm:w-[360px] sm:h-[150px]' style={{ background: `${name}` }}></div>
-                      </Link>
+                      <div className='w-full h-[170px] sm:w-[360px] sm:h-[150px]' style={{ background: `${name}` }}></div>
                       <div style={{ border: `2px solid ${name}` }} className='flex items-center justify-between px-1 w-full'>
-                        <span style={{ color: `${name}` }}>{Name}</span>
-                        <span style={{ color: `${name}` }}>Rs.{price}</span>
+                        <div>
+                          <span style={{ color: `${name}` }}>{Name}</span>
+                        </div>
+                        <div id='cart' className='flex items-center justify-center gap-x-1'>
+                          <span style={{ color: `${name}` }}>Rs.{price}</span>
+                          <Image onClick={() => removeFromCart(name, price)} className='cursor-pointer' src={cross} alt={"remove-from-cart"} width={20} height={20} />
+                        </div>
                       </div>
                     </div>
                   )
+                })
+              }
+            </div>
+            <div className='w-full py-5 text-center'>
+              <span className='text-3xl uppercase tracking-[10px] font-bold'>checkout</span>
+            </div>
+            <div className='flex items-center justify-center flex-wrap border-2 border-white my-5'>
+              {
+                cartProducts?.map(({ price }) => {
+
                 })
               }
             </div>

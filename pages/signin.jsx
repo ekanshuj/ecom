@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import React, { useEffect } from 'react';
-import { SocialIcon } from 'react-social-icons';
 import { auth } from '../src/config/firebase-config';
 import { useRouter } from 'next/router';
 import { signInWithEmailAndPassword, onAuthStateChanged, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
@@ -10,7 +9,6 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Signin = () => {
   const router = useRouter();
-
   const [user, loading, error] = useAuthState(auth);
   const provider = new GoogleAuthProvider();
   const googleHandle = async () => {
@@ -77,17 +75,7 @@ const Signin = () => {
   };
 
   return (
-    <main className='h-screen max-w-screen bg-black overflow-y-hidden'>
-      <nav className='flex items-center justify-between flex-col sm:flex-row px-2 mx-auto max-w-[70rem]'>
-        <div className='text-white font-mono font-black tracking-[5px] text-[1.5rem] cursor-pointer' onClick={() => router.push("/")}>
-          next-ecommerce
-        </div>
-        <SocialIcon
-          url="https://github.com/ekanshuj"
-          bgColor="transparent"
-          fgColor="white"
-        />
-      </nav>
+    <main className='h-screen max-w-screen overflow-y-hidden'>
       <section className="text-white flex items-center justify-center h-full flex-col">
         <div className='border-2 border-white sm:w-[40rem] lg:w-[50rem] h-[21rem] p-2 rounded-[3px]'>
           <div className='h-full w-[20rem] sm:w-[25rem] mx-auto'>

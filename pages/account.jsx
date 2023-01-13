@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth } from '../src/config/firebase-config';
 import { signOut } from "firebase/auth";
 import { useRouter } from 'next/router';
 import Head from 'next/head';
-import { SocialIcon } from 'react-social-icons';
 import Image from 'next/image';
 
 import avatar from '../src/assets/images/avatar.svg'
@@ -16,25 +15,17 @@ const Account = () => {
     await signOut(auth);
     router.push("/");
   };
+  useEffect(() => {
+    !user && router.push("/signin");
+  }, [user, router]);
   return (
     <>
       <Head>
         <title>next-ecommerce | {user?.displayName ? user?.displayName : "Avatar"}</title>
-        <title>next-ecommerce | {user?.displayName || 'Avatar'}</title>
         <meta name="keyword" content="color" />
       </Head>
-      <main className='min-h-screen max-w-screen bg-black'>
-        <div className="product mx-auto max-w-[70rem] px-2 sm:px-1">
-          <nav className='flex items-center justify-between flex-col sm:flex-row'>
-            <div className='text-white font-mono font-black tracking-[5px] text-[1.07rem] sm:text-[1.5rem] cursor-pointer' onClick={() => router.push("/")}>
-              next-ecommerce
-            </div>
-            <SocialIcon
-              url="https://github.com/ekanshuj/next-ecommerce"
-              bgColor="transparent"
-              fgColor="white"
-            />
-          </nav>
+      <main className='min-h-screen max-w-screen'>
+        <div className="account mx-auto max-w-[70rem] px-2 sm:px-1">
           <section className='text-white my-10'>
             <div className='flex justify-between items-center my-3'>
               <div>

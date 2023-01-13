@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { SocialIcon } from 'react-social-icons'
 import Image from 'next/image';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useRouter } from 'next/router';
@@ -31,18 +30,8 @@ const Header = () => {
   };
 
   return (
-    <header className='bg-black'>
-      <nav className='flex items-center justify-between flex-col sm:flex-row px-2 sm:px-1'>
-        <div className='text-white font-mono font-black tracking-[5px] text-[1.07rem] sm:text-[1.5rem] cursor-pointer' onClick={() => router.push("/")}>
-          next-ecommerce
-        </div>
-        <SocialIcon
-          url="https://github.com/ekanshuj/next-ecommerce"
-          bgColor="transparent"
-          fgColor="white"
-        />
-      </nav>
-      <div className='flex items-center justify-center flex-col sm:flex-row'>
+    <header>
+      <div className='flex items-center justify-center flex-col sm:flex-row px-2 sm:px-0'>
         <div className='w-full my-2 px-3 sm:px-1 flex-1'>
           <input className='w-full h-12 rounded-[3px] px-1 text-[1.1rem] placeholder:text-[0.8rem] sm:placeholder:text-[1rem] placeholder:font-medium placeholder:tracking-[1px] focus:outline-none' type="search" name="search" placeholder='Search for the products' />
         </div>
