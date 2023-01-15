@@ -1,15 +1,16 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import Image from 'next/image';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { auth } from '../config/firebase-config';
 import CartContext from '../context/CartContext';
 
 import avatar from '../assets/images/avatar.svg'
 import cart from '../assets/images/cart.svg'
-import Link from 'next/link';
 
 const Header = () => {
+  const [searchTerm, setSearchTerm] = useState("");
   const { cartProducts } = useContext(CartContext);
   const [user] = useAuthState(auth);
   const router = useRouter();
@@ -33,7 +34,11 @@ const Header = () => {
     <header>
       <div className='flex items-center justify-center flex-col sm:flex-row px-2 sm:px-0'>
         <div className='w-full my-2 px-3 sm:px-1 flex-1'>
-          <input className='w-full h-12 rounded-[3px] px-1 text-[1.1rem] placeholder:text-[0.8rem] sm:placeholder:text-[1rem] placeholder:font-medium placeholder:tracking-[1px] focus:outline-none' type="search" name="search" placeholder='Search for the products' />
+          <input
+            className='w-full h-12 rounded-[3px] px-1 text-[1.1rem] placeholder:text-[0.8rem] sm:placeholder:text-[1rem] placeholder:font-medium placeholder:tracking-[1px] focus:outline-none'
+            type="search"
+            name="search"
+            placeholder='Search for the products' />
         </div>
         <div className='px-1 flex items-center justify-center gap-x-1 sm:gap-x-0'>
           <Link href={"/cart"}>
@@ -47,7 +52,7 @@ const Header = () => {
           </div>
           {
             user?.photoURL ?
-              < Image onClick={handleClick} className='rounded-full cursor-pointer' src={user?.photoURL && `${user.photoURL}`} alt={user?.displayName} width={45} height={45} />
+              < Image style={{ padding: "0px 4px" }} onClick={handleClick} className='rounded-full cursor-pointer' src={user?.photoURL && `${user.photoURL}`} alt={user?.displayName} width={45} height={45} />
               : user === null &&
               < Image onClick={handleClick} className='rounded-full cursor-pointer invert' src={avatar} alt={"avatar"} width={45} height={45} />
           }

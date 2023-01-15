@@ -1,7 +1,6 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { products } from '../../data/products';
 import Link from 'next/link';
-import CartContext from '../context/CartContext';
 
 const Home = () => {
   return (
@@ -23,7 +22,7 @@ const Home = () => {
                   <div className='w-full h-[170px] sm:w-[360px] sm:h-[150px]' style={{ background: `${name}` }}></div>
                   <div style={{ border: `2px solid ${name}` }} className='flex items-center justify-between px-1 w-full'>
                     <span style={{ color: `${name}` }}>{Name}</span>
-                    <span style={{ color: `${name}` }}>Rs.{price}</span>
+                    <span style={{ color: `${name}` }}>₹{price}</span>
                   </div>
                 </Link>
               </div>

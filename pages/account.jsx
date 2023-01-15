@@ -30,7 +30,8 @@ const Account = () => {
             <div className='flex justify-between items-center my-3'>
               <div>
                 <Image
-                  className='rounded-full invert'
+                  className='rounded-full'
+                  style={{ filter: `${user?.photoURL === null}` && "invert(100)" }}
                   src={user?.photoURL ? user.photoURL : avatar}
                   alt={user?.displayName && user.displayName || "avatar"}
                   width={150}
