@@ -4,8 +4,8 @@ import Link from 'next/link';
 
 const Home = () => {
   return (
-    <div className='text-white w-full py-2'>
-      <div className='sm:flex sm:items-center sm:justify-center sm:flex-wrap sm:gap-3 lg:gap-4 px-2 sm:px-0 my-5'>
+    <div className='text-white w-full py-2 px-2 sm:px-0'>
+      <div className='sm:flex sm:items-center sm:justify-center sm:flex-wrap sm:gap-3 lg:gap-4 my-5'>
         {
           products?.map(({ id, name, price }) => {
             const Name = name[0].toUpperCase() + name.substring(1);
@@ -15,8 +15,7 @@ const Home = () => {
                   pathname: '/[slug]',
                   query: {
                     slug: `${name}`,
-                    description: `${name}`,
-                    price: `${price}`,
+                    id: `${id}`,
                   },
                 }} passHref>
                   <div className='w-full h-[170px] sm:w-[360px] sm:h-[150px]' style={{ background: `${name}` }}></div>

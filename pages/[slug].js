@@ -11,7 +11,7 @@ const Product = () => {
   const [user] = useAuthState(auth);
   const router = useRouter();
   const { slug: name } = router.query;
-  const price = Number(router.query['price']);
+  const id = Number(router.query['id']);
   return (
     <>
       <Head>
@@ -27,7 +27,7 @@ const Product = () => {
             <div className='w-full h-28 my-3' style={{ background: `${name}` }}>
             </div>
             <div className='flex items-center justify-center flex-wrap gap-2'>
-              <button onClick={() => addToCart(name, price)} className='uppercase text-[1rem] font-semibold tracking-[3px] px-7 py-1' style={{ border: `2px solid ${name}` }}>Add to Cart</button>
+              <button onClick={() => addToCart(id)} className='uppercase text-[1rem] font-semibold tracking-[3px] px-7 py-1' style={{ border: `2px solid ${name}` }}>Add to Cart</button>
               <Link href={user ? "/checkout" : "/signin"}>
                 <button className='uppercase text-[1rem] font-semibold tracking-[3px] px-7 py-1' style={{ border: `2px solid ${name}` }}>Buy Now</button>
               </Link>

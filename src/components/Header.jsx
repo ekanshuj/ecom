@@ -11,7 +11,7 @@ import cart from '../assets/images/cart.svg'
 
 const Header = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const { cartProducts } = useContext(CartContext);
+  const { cartCount } = useContext(CartContext);
   const [user] = useAuthState(auth);
   const router = useRouter();
   const handleClick = () => {
@@ -43,7 +43,7 @@ const Header = () => {
         <div className='px-1 flex items-center justify-center gap-x-1 sm:gap-x-0'>
           <Link href={"/cart"}>
             <div className='flex items-center justify-center'>
-              <p className='text-white underline underline-offset-2 px-1 text-xl font-semibold'>{cartProducts.length}</p>
+              <p className='text-white underline underline-offset-2 px-1 text-xl font-semibold'>{cartCount}</p>
               <Image className='invert' src={cart} alt={"cart"} height={30} width={30} />
             </div>
           </Link>
