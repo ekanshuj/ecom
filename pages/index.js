@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import React from 'react';
+import React, { useState } from 'react';
 import { Inter } from '@next/font/google'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 

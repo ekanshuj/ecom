@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import Image from 'next/image';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import Link from 'next/link';
@@ -10,8 +10,7 @@ import avatar from '../assets/images/avatar.svg'
 import cart from '../assets/images/cart.svg'
 
 const Header = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const { cartCount } = useContext(CartContext);
+  const { cartCount, textVal } = useContext(CartContext);
   const [user] = useAuthState(auth);
   const router = useRouter();
   const handleClick = () => {
@@ -35,6 +34,7 @@ const Header = () => {
       <div className='flex items-center justify-center flex-col sm:flex-row px-2 sm:px-0'>
         <div className='w-full my-2 px-3 sm:px-1 flex-1'>
           <input
+            onKeyDown={(e) => textVal(e.target.value)}
             className='w-full h-12 rounded-[3px] px-1 text-[1.1rem] placeholder:text-[0.8rem] sm:placeholder:text-[1rem] placeholder:font-medium placeholder:tracking-[1px] focus:outline-none'
             type="search"
             name="search"
