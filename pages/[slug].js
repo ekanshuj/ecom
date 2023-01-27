@@ -5,13 +5,29 @@ import React, { useContext } from 'react';
 import { auth } from '../src/config/firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import CartContext from '../src/context/CartContext';
+// import axios from 'axios';
+// import { getStripe } from '../utils/get-stripe'
 
 const Product = () => {
-  const { addToCart } = useContext(CartContext);
+  const { addToCart, itemCount, removeFromCart } = useContext(CartContext);
   const [user] = useAuthState(auth);
   const router = useRouter();
   const { slug: name } = router.query;
-  const id = Number(router.query['id']);
+  const id = router.query['id'];
+  const count = itemCount(id);
+  // const checkout = async () => {
+  //   const { data: { id } } = await axios.post('/api/checkout_sessions', {
+  //     items: [
+  //       {
+  //         price: router.query['id'],
+  //         quantity: 1
+  //       }
+  //     ]
+  //   });
+  //   const stripe = await getStripe();
+  //   await stripe.redirectToCheckout({ sessionId: id });
+  // };
+
   return (
     <>
       <Head>
@@ -27,10 +43,22 @@ const Product = () => {
             <div className='w-full h-28 my-3' style={{ background: `${name}` }}>
             </div>
             <div className='flex items-center justify-center flex-wrap gap-2'>
-              <button onClick={() => addToCart(id)} className='uppercase text-[1rem] font-semibold tracking-[3px] px-7 py-1' style={{ border: `2px solid ${name}` }}>Add to Cart</button>
-              <Link href={user ? "/checkout" : "/signin"}>
-                <button className='uppercase text-[1rem] font-semibold tracking-[3px] px-7 py-1' style={{ border: `2px solid ${name}` }}>Buy Now</button>
-              </Link>
+              {
+                count !== 0 ? (
+                  <div className='flex items-center justify-center gap-x-1  px-7 py-1' style={{ border: `2px solid ${name}` }}>
+                    <button onClick={() => removeFromCart(id)} className='w-5 h-5 flex items-center justify-center bg-slate-300 text-black font-black text-lg'>-</button>
+                    <span>{count}</span>
+                    <button onClick={() => addToCart(id)} className='w-5 h-5 flex items-center justify-center bg-slate-300 text-black font-black text-lg'>+</button>
+                  </div>
+                )
+                  : (
+
+                    <button onClick={() => addToCart(id)} className='uppercase text-[1rem] font-semibold tracking-[3px] px-7 py-1' style={{ border: `2px solid ${name}` }}>Add to Cart</button>
+                  )
+              }
+              {/* <Link href={user ? "/checkout" : "/signin"}> */}
+              <button className='uppercase text-[1rem] font-semibold tracking-[3px] px-7 py-1' style={{ border: `2px solid ${name}` }}>Buy Now</button>
+              {/* </Link> */}
             </div>
           </section>
         </div>

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Inter } from '@next/font/google'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
-const inter = Inter({ subsets: ['latin'] })
+const inter = Inter({ subsets: ['latin'] });
 const query = new QueryClient();
 
 import { Header, Home } from '../src/components'

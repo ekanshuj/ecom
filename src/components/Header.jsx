@@ -14,7 +14,7 @@ const Header = () => {
   const [user] = useAuthState(auth);
   const router = useRouter();
   const handleClick = () => {
-    user ? router.push("/account") : router.push("/signin");
+    user ? router.push("/account") : router.push("/signin")
   };
 
   const divStyle = {
@@ -34,7 +34,7 @@ const Header = () => {
       <div className='flex items-center justify-center flex-col sm:flex-row px-2 sm:px-0'>
         <div className='w-full my-2 px-3 sm:px-1 flex-1'>
           <input
-            onKeyDown={(e) => textVal(e.target.value)}
+            onKeyUp={(e) => textVal(e.target.value)}
             className='w-full h-12 rounded-[3px] px-1 text-[1.1rem] placeholder:text-[0.8rem] sm:placeholder:text-[1rem] placeholder:font-medium placeholder:tracking-[1px] focus:outline-none'
             type="search"
             name="search"
