@@ -27,7 +27,7 @@ const Cart = () => {
       <main className='min-h-screen max-w-screen'>
         <div className="product mx-auto max-w-[70rem] px-2 sm:px-0">
           <section className='text-white w-full py-2'>
-            <div className='w-full py-5 text-center'>
+            <div className='w-full text-center'>
               <span className='text-xl uppercase tracking-[10px] font-bold'>shopping cart</span>
             </div>
             <div className='sm:flex sm:items-center sm:justify-center sm:flex-wrap sm:gap-3 lg:gap-4 my-5'>
@@ -39,10 +39,6 @@ const Cart = () => {
                 )
               }
             </div>
-            <div className='w-full py-5 text-center'>
-              <button className='text-3xl uppercase tracking-[10px] font-bold'>checkout</button>
-            </div>
-
           </section>
         </div>
       </main>
