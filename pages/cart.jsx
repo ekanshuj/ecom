@@ -49,7 +49,7 @@ const Cart = () => {
                 <span><strong className='underline'>Total</strong> : [ ₹{price} ]</span>
               </div>
               <div>
-                <button className=' text-black bg-white uppercase text-[0.9rem] font-bold tracking-[3px] px-5 py-[2px] border-2 border-white'>checkout</button>
+                <button className='text-black bg-white uppercase text-[0.9rem] font-bold tracking-[3px] px-5 py-[2px] border-2 border-white'>checkout</button>
               </div>
             </div>
           </section>

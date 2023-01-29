@@ -3,13 +3,13 @@ import { useState, useEffect } from 'react';
 const useLocalStorage = (key, initialVal) => {
   const [val, setVal] = useState(() => {
     if (typeof window === "undefined") return initialVal;
+
     const jsonVal = window.localStorage.getItem(key);
     if (jsonVal !== null) return JSON.parse(jsonVal);
 
-    if (typeof initialVal === "function") return initialVal();
-    else {
-      return initialVal
-    };
+    if (initialVal instanceof Function) return initialVal();
+    return initialVal;
+
   });
 
   useEffect(() => {

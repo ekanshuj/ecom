@@ -5,8 +5,8 @@ import React, { useContext } from 'react';
 import { auth } from '../src/config/firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import CartContext from '../src/context/CartContext';
-// import axios from 'axios';
-// import { getStripe } from '../utils/get-stripe'
+import axios from 'axios';
+import getStripe from '../utils/get-stripe'
 
 const Product = () => {
   const { addToCart, itemCount, removeFromCart } = useContext(CartContext);
@@ -15,18 +15,21 @@ const Product = () => {
   const { slug: name } = router.query;
   const id = router.query['id'];
   const count = itemCount(id);
-  // const checkout = async () => {
-  //   const { data: { id } } = await axios.post('/api/checkout_sessions', {
-  //     items: [
-  //       {
-  //         price: router.query['id'],
-  //         quantity: 1
-  //       }
-  //     ]
-  //   });
-  //   const stripe = await getStripe();
-  //   await stripe.redirectToCheckout({ sessionId: id });
-  // };
+
+  const checkout = async () => {
+    const { data: { id } } = await axios.post('/api/checkout_sessions', {
+      items: [
+        {
+          price: router.query['id'],
+          quantity: 1
+        }
+      ]
+    });
+
+    const stripe = await getStripe();
+    const res = await stripe.redirectToCheckout({ sessionId: id });
+    if (res.error) console.log(error);
+  };
 
   return (
     <>
@@ -57,7 +60,7 @@ const Product = () => {
                   )
               }
               {/* <Link href={user ? "/checkout" : "/signin"}> */}
-              <button className='uppercase text-[1rem] font-semibold tracking-[3px] px-7 py-1' style={{ border: `2px solid ${name}` }}>Buy Now</button>
+              <button onClick={checkout} className='uppercase text-[1rem] font-semibold tracking-[3px] px-7 py-1' style={{ border: `2px solid ${name}` }}>Buy Now</button>
               {/* </Link> */}
             </div>
           </section>
