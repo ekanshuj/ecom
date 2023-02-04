@@ -11,7 +11,7 @@ const Home = ({ data }) => {
             return (
               <div key={id} className='my-2 sm:my-0 sm:flex sm:justify-center sm:items-center sm:flex-col'>
                 <Link href={{
-                  pathname: '/[slug]',
+                  pathname: '/colors/[slug]',
                   query: {
                     slug: `${name}`,
                     id: `${id}`,

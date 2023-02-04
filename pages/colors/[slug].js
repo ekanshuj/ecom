@@ -2,11 +2,11 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React, { useContext } from 'react';
-import { auth } from '../src/config/firebase-config';
+import { auth } from '../../src/config/firebase-config';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import CartContext from '../src/context/CartContext';
+import CartContext from '../../src/context/CartContext';
 import axios from 'axios';
-import getStripe from '../utils/get-stripe'
+import getStripe from '../../utils/get-stripe'
 
 const Product = () => {
   const { addToCart, itemCount, removeFromCart } = useContext(CartContext);
@@ -21,7 +21,7 @@ const Product = () => {
       items: [
         {
           price: router.query['id'],
-          quantity: 1
+          quantity: count || 1
         }
       ]
     });
