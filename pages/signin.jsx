@@ -75,7 +75,7 @@ const Signin = () => {
   };
 
   return (
-    <main className='max-w-screen overflow-y-hidden'>
+    <main className='h-screen max-w-screen overflow-y-hidden'>
       <section className="text-white flex items-center justify-center h-full flex-col">
         <div className='border-2 border-white sm:w-[40rem] lg:w-[50rem] h-[21rem] p-2 rounded-[3px]'>
           <div className='h-full w-[20rem] sm:w-[25rem] mx-auto'>

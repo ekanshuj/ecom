@@ -28,7 +28,7 @@ const Home = ({ data }) => {
           })
         }
       </div>
-      <div className='py-2 border-2 border-white text-center cursor-pointer rounded-[2px]' onClick={() => window.scrollTo(0, 0)}>
+      <div className='py-[2px] border-2 border-white text-center cursor-pointer rounded-[2px]' onClick={() => window.scrollTo(0, 0)}>
         <span className='uppercase font-bold tracking-[3px] text-[0.7rem]'>Back to Top</span>
       </div>
     </div>

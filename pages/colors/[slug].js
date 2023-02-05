@@ -37,7 +37,7 @@ const Product = () => {
         <title>next-ecommerce | Color</title>
         <meta name="keyword" content="color" />
       </Head>
-      <main className='min-h-screen max-w-screen bg-black'>
+      <main className='max-w-screen bg-black'>
         <div className="product mx-auto max-w-[70rem] px-2 sm:px-1">
           <section className='text-white flex items-center justify-center flex-col my-10'>
             <div className='justify-start w-full'>

@@ -4,3 +4,4 @@ export { default as Navbar } from "./Navbar";
 export { default as CartItem } from "./CartItem";
 export { default as Filtered } from "./Filtered";
 export { default as Products } from "./Products";
+export { default as Footer } from "./Footer";

@@ -24,7 +24,7 @@ const Account = () => {
         <title>next-ecommerce | {user?.displayName ? user?.displayName : "Avatar"}</title>
         <meta name="keyword" content="color" />
       </Head>
-      <main className='min-h-screen max-w-screen'>
+      <main className='max-w-screen'>
         <div className="account mx-auto max-w-[70rem] px-2 sm:px-1">
           <section className='text-white my-10'>
             <div className='flex justify-between items-center my-3'>

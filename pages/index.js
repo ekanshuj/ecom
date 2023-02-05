@@ -1,10 +1,8 @@
 import Head from 'next/head';
 import React, { useState } from 'react';
 import { Inter } from '@next/font/google'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const inter = Inter({ subsets: ['latin'] });
-const query = new QueryClient();
 
 import { Header, Home } from '../src/components'
 
@@ -17,14 +15,12 @@ export default function Index() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <QueryClientProvider client={query}>
-        <main className='min-h-screen max-w-screen'>
-          <div className="app mx-auto max-w-[70rem]">
-            <Header />
-            <Home />
-          </div>
-        </main>
-      </QueryClientProvider>
+      <main className='min-h-screen max-w-screen'>
+        <div className="app mx-auto max-w-[70rem]">
+          <Header />
+          <Home />
+        </div>
+      </main>
     </>
   )
 };
