@@ -1,19 +1,19 @@
-import { createContext, useState } from "react";
-import { useLocalStorage } from "../hooks/useLocalStorage";
+import { createContext, useState, useEffect } from "react";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const CartContext = createContext();
 export const CartProvider = ({ children }) => {
-  const [cartProducts, setCartProducts] = useState([]);
+  const [cartProducts, setCartProducts] = useLocalStorage("cartItems", []);
   const [searchTerm, setSearchTerm] = useState("");
 
   const textVal = (val) => {
     setSearchTerm(val)
   };
 
-  const cartCount = cartProducts.reduce((acc, curr) => curr.count + acc, 0);
+  const cartCount = cartProducts?.reduce((acc, curr) => curr.count + acc, 0);
 
   const itemCount = (id) => {
-    return cartProducts.find(items => items.id === id)?.count || 0;
+    return cartProducts?.find(items => items.id === id)?.count || 0;
   };
 
   const addToCart = (id) => {
@@ -47,7 +47,8 @@ export const CartProvider = ({ children }) => {
   const deleteFromCart = (id) => {
     setCartProducts(initialState => {
       return initialState.filter(items => items.id !== id);
-    })
+    });
+    localStorage.removeItem("cartItems");
   };
 
   return (

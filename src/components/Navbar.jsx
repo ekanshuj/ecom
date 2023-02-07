@@ -12,8 +12,8 @@ const Navbar = () => {
   const router = useRouter();
   return (
     <nav className='bg-gray-800 flex items-center justify-between px-1 mt-1'>
-      <div className='text-white font-mono font-black tracking-[3px] sm:tracking-[5px] text-[1.5rem] sm:text-[1.7rem] cursor-pointer' onClick={() => router.push("/")}>
-        next-ecommerce
+      <div className='text-white font-mono font-black tracking-[3px] sm:tracking-[5px] text-[1.3rem] sm:text-[1.5rem] cursor-pointer' onClick={() => router.push("/")}>
+        ECOM
       </div>
       {
         router.pathname === "/colors/[slug]" ?

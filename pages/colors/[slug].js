@@ -9,7 +9,7 @@ import axios from 'axios';
 import getStripe from '../../utils/get-stripe'
 
 const Product = () => {
-  const { addToCart, itemCount, removeFromCart } = useContext(CartContext);
+  const { addToCart, itemCount, removeFromCart, deleteFromCart } = useContext(CartContext);
   const [user] = useAuthState(auth);
   const router = useRouter();
   const { slug: name } = router.query;
@@ -17,18 +17,22 @@ const Product = () => {
   const count = itemCount(id);
 
   const checkout = async () => {
-    const { data: { id } } = await axios.post('/api/checkout_sessions', {
-      items: [
-        {
-          price: router.query['id'],
-          quantity: count || 1
-        }
-      ]
-    });
+    if (user === null) router.push("/signin");
+    else {
+      const { data: { id, url } } = await axios.post('/api/checkout_sessions', {
+        items: [
+          {
+            price: router.query['id'],
+            quantity: count || 1
+          }
+        ]
+      });
 
-    const stripe = await getStripe();
-    const res = await stripe.redirectToCheckout({ sessionId: id });
-    if (res.error) console.log(error);
+      const stripe = await getStripe();
+      localStorage.setItem("sessionUrl", url);
+      deleteFromCart(router.query['id']);
+      // await stripe.redirectToCheckout({ sessionId: id });
+    }
   };
 
   return (
@@ -59,9 +63,7 @@ const Product = () => {
                     <button onClick={() => addToCart(id)} className='uppercase text-[1rem] font-semibold tracking-[3px] px-7 py-1' style={{ border: `2px solid ${name}` }}>Add to Cart</button>
                   )
               }
-              {/* <Link href={user ? "/checkout" : "/signin"}> */}
               <button onClick={checkout} className='uppercase text-[1rem] font-semibold tracking-[3px] px-7 py-1' style={{ border: `2px solid ${name}` }}>Buy Now</button>
-              {/* </Link> */}
             </div>
           </section>
         </div>

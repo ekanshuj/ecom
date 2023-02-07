@@ -4,9 +4,15 @@ import { Inter } from '@next/font/google'
 
 const inter = Inter({ subsets: ['latin'] });
 
-import { Header, Home } from '../src/components'
+import { Header, Home } from '../src/components';
+import useHasMounted from '../src/hooks/useHasMounted';
 
 export default function Index() {
+  const hasMounted = useHasMounted();
+  if (!hasMounted) {
+    return null
+  };
+
   return (
     <>
       <Head>

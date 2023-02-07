@@ -13,11 +13,13 @@ const Account = () => {
   const router = useRouter();
   const handleSignOut = async () => {
     await signOut(auth);
+    localStorage.removeItem("userUID");
     router.push("/");
   };
   useEffect(() => {
-    !user && router.push("/signin");
+    !localStorage.getItem("userUID") && router.push("/signin");
   }, [user, router]);
+
   return (
     <>
       <Head>
@@ -31,7 +33,7 @@ const Account = () => {
               <div>
                 <Image
                   className='rounded-full'
-                  style={{ filter: `${user?.photoURL === null}` && "invert(100)" }}
+                  // style={{ filter: `${user?.photoURL === null}` ? "invert(100)" : "invert(0)" }}
                   src={user?.photoURL ? user.photoURL : avatar}
                   alt={user?.displayName && user.displayName || "avatar"}
                   width={150}

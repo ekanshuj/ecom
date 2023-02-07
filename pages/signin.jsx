@@ -9,7 +9,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 const Signin = () => {
   const router = useRouter();
-  const [user, loading, error] = useAuthState(auth);
+  const [user] = useAuthState(auth);
   const provider = new GoogleAuthProvider();
   const googleHandle = async () => {
     try {
@@ -38,6 +38,7 @@ const Signin = () => {
     }
   };
   useEffect(() => {
+    user && localStorage.setItem("userUID", user.uid)
     user && router.push("/");
   }, [user, router]);
 
@@ -70,6 +71,7 @@ const Signin = () => {
       });
     };
     onAuthStateChanged(auth, (currentUser) => {
+      user && localStorage.setItem("userUID", user.uid)
       currentUser && router.push("/");
     })
   };

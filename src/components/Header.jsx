@@ -54,7 +54,7 @@ const Header = () => {
             user?.photoURL ?
               < Image style={{ padding: "0px 4px" }} onClick={handleClick} className='rounded-full cursor-pointer' src={user?.photoURL && `${user.photoURL}`} alt={user?.displayName} width={45} height={45} />
               : user === null &&
-              < Image onClick={handleClick} className='rounded-full cursor-pointer invert' src={avatar} alt={"avatar"} width={45} height={45} />
+              < Image onClick={handleClick} className='rounded-full cursor-pointer invert' src={avatar} alt={"avatar"} width={42} height={42} />
           }
         </div>
       </div>
