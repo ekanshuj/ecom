@@ -33,7 +33,7 @@ const Cart = () => {
       const stripe = await getStripe();
       localStorage.setItem("sessionUrl", url);
       cartProducts?.forEach(({ id }) => deleteFromCart(id.toString()));
-      // await stripe.redirectToCheckout({ sessionId: id });
+      await stripe.redirectToCheckout({ sessionId: id });
     }
   };
 
@@ -50,7 +50,7 @@ const Cart = () => {
       </Head>
       <main>
         {
-          cartProducts?.length !== 0
+          cartProducts?.length > 0
             ?
             <div className='h-screen max-w-screen'>
               <div className="product mx-auto max-w-[70rem] px-2 sm:px-0">
@@ -79,9 +79,9 @@ const Cart = () => {
               </div>
             </div>
             :
-            <div className='flex items-center justify-center flex-col h-[85vh] my-2'>
-              <span className='font-bold text-[1.05rem] tracking-[2px] text-orange-600'>Cart is empty</span>
-              <span className='font-bold text-[1.05rem] tracking-[2px] text-white'><strong className='text-green-500 cursor-pointer underline' onClick={() => router.push("/")}>Shop</strong> now to get started.</span>
+            <div className='flex items-center justify-center flex-col flex-wrap h-[85vh] my-2'>
+              <span className='font-bold text-[1.05rem] tracking-[2px] text-center text-orange-600'>Cart is empty</span>
+              <span className='font-bold text-[1.05rem] tracking-[2px] text-center text-white'><strong className='text-green-500 cursor-pointer underline' onClick={() => router.push("/")}>Shop</strong> now to get started.</span>
             </div>
         }
       </main >

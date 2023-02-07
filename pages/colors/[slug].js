@@ -31,7 +31,7 @@ const Product = () => {
       const stripe = await getStripe();
       localStorage.setItem("sessionUrl", url);
       deleteFromCart(router.query['id']);
-      // await stripe.redirectToCheckout({ sessionId: id });
+      await stripe.redirectToCheckout({ sessionId: id });
     }
   };
 
