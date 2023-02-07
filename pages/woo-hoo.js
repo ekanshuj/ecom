@@ -21,9 +21,9 @@ const Woohoo = () => {
   }, [router]);
 
   return (
-    <section className='flex items-center justify-center flex-col h-[85vh] my-[10px]'>
-      <div className='text-green-700 font-bold text-[1.05rem] tracking-[2px]'>Payment Successfull👍</div>
-      <div className='text-white font-bold text-lg tracking-[2px]'>You&apos;ll be redirected back in <strong>{num}</strong> sec or click <strong className='cursor-pointer text-orange-500' onClick={() => {
+    <section className='flex items-center justify-center flex-col flex-wrap h-[85vh] my-[10px]'>
+      <div className='text-green-700 font-bold text-[1.05rem] tracking-[2px] text-center'>Payment Successfull👍</div>
+      <div className='text-white font-bold text-lg tracking-[2px] text-center'>You&apos;ll be redirected back in <strong>{num}</strong> sec or click <strong className='cursor-pointer text-orange-500' onClick={() => {
         localStorage.removeItem("sessionUrl");
         localStorage.removeItem("cartItems");
         router.push("/");
