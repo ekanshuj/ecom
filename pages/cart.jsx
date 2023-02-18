@@ -56,7 +56,7 @@ const Cart = () => {
               <div className="product mx-auto max-w-[70rem] px-2 sm:px-0">
                 <section className='text-white w-full py-2'>
                   <div className='w-full text-center'>
-                    <span className='text-base sm:text-xl tracking-[3px] sm:tracking-[5px] font-bold text-gray-300'>Shopping cart</span>
+                    <span className='text-lg sm:text-xl tracking-[3px] sm:tracking-[5px] font-bold text-gray-300'>Shopping cart</span>
                   </div>
                   <div className='sm:flex sm:items-center sm:justify-center sm:flex-wrap sm:gap-3 lg:gap-4 my-4 pb-5'>
                     {

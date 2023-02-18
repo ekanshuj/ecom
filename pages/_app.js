@@ -7,7 +7,7 @@ export default function App({ Component, pageProps }) {
     <CartProvider>
       <Navbar />
       <Component {...pageProps} />
-      <Footer />
+      {/* <Footer /> */}
     </CartProvider>
   )
 }
