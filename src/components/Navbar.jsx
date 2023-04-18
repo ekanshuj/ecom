@@ -11,8 +11,8 @@ const Navbar = () => {
   const { cartCount } = useContext(CartContext);
   const router = useRouter();
   return (
-    <nav className='bg-gray-800 flex items-center justify-between px-1 mt-1'>
-      <div className='text-white font-mono font-black tracking-[3px] sm:tracking-[5px] text-[1.3rem] sm:text-[1.5rem] cursor-pointer' onClick={() => router.push("/")}>
+    <nav className='bg-gray-800 h-[10vh] flex items-center justify-between px-1 mx-1 sm:mx-auto max-w-[69.5rem]'>
+      <div className='text-white font-mono font-black tracking-[3px] sm:tracking-[5px] text-[1.3rem] sm:text-[2rem] cursor-pointer' onClick={() => router.push("/")}>
         ECOM
       </div>
       {

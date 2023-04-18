@@ -30,33 +30,31 @@ const Header = () => {
   };
 
   return (
-    <header>
-      <div className='flex items-center justify-center flex-col sm:flex-row px-2 sm:px-0'>
-        <div className='w-full my-2 px-3 sm:px-1 flex-1'>
-          <input
-            onKeyUp={(e) => textVal(e.target.value)}
-            className='w-full h-12 rounded-[3px] px-1 text-[1.1rem] placeholder:text-[0.8rem] sm:placeholder:text-[1rem] placeholder:font-medium placeholder:tracking-[1px] focus:outline-none'
-            type="search"
-            name="search"
-            placeholder='Search for the products' />
-        </div>
-        <div className='px-1 flex items-center justify-center gap-x-1 sm:gap-x-0'>
-          <Link href={"/cart"}>
-            <div className='flex items-center justify-center'>
-              <p className='text-white underline underline-offset-2 px-1 text-xl font-semibold'>{cartCount}</p>
-              <Image className='invert' src={cart} alt={"cart"} height={30} width={30} />
-            </div>
-          </Link>
-          <div className='flex items-center justify-center' style={user?.photoURL === null && user?.email ? divStyle : none} onClick={handleClick}>
-            <span className='text-white text-xl font-semibold'>{user?.email.charAt(0).toUpperCase()}</span>
+    <header className='flex items-center justify-center flex-col flex-wrap sm:flex-row sm:px-1'>
+      <div className='w-full my-2 px-1 sm:px-0 flex-1'>
+        <input
+          onKeyUp={(e) => textVal(e.target.value)}
+          className='w-full h-14 rounded-[3px] px-1 text-[1.1rem] placeholder:text-[0.8rem] sm:placeholder:text-[1rem] placeholder:font-medium placeholder:tracking-[1px] focus:outline-none'
+          type="search"
+          name="search"
+          placeholder='Search for the products' />
+      </div>
+      <div className='px-1 flex items-center justify-center gap-x-1 sm:gap-x-0'>
+        <Link href={"/cart"}>
+          <div className='flex items-center justify-center'>
+            <p className='text-white underline underline-offset-2 px-1 text-xl font-semibold'>{cartCount}</p>
+            <Image className='invert' src={cart} alt={"cart"} height={30} width={30} />
           </div>
-          {
-            user?.photoURL ?
-              < Image style={{ padding: "0px 4px" }} onClick={handleClick} className='rounded-full cursor-pointer' src={user?.photoURL && `${user.photoURL}`} alt={user?.displayName} width={45} height={45} />
-              : user === null &&
-              < Image onClick={handleClick} className='rounded-full cursor-pointer invert' src={avatar} alt={"avatar"} width={42} height={42} />
-          }
+        </Link>
+        <div className='flex items-center justify-center' style={user?.photoURL === null && user?.email ? divStyle : none} onClick={handleClick}>
+          <span className='text-white text-xl font-semibold'>{user?.email.charAt(0).toUpperCase()}</span>
         </div>
+        {
+          user?.photoURL ?
+            < Image style={{ padding: "0px 4px" }} onClick={handleClick} className='rounded-full cursor-pointer' src={user?.photoURL && `${user.photoURL}`} alt={user?.displayName} width={45} height={45} />
+            : user === null &&
+            < Image onClick={handleClick} className='rounded-full cursor-pointer invert' src={avatar} alt={"avatar"} width={42} height={42} />
+        }
       </div>
     </header>
   )

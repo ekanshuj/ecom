@@ -21,7 +21,7 @@ export default function Index() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className='min-h-screen max-w-screen'>
+      <main className='min-h-screen'>
         <div className="app mx-auto max-w-[70rem]">
           <Header />
           <Home />

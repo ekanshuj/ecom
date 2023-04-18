@@ -52,7 +52,7 @@ const Cart = () => {
         {
           cartProducts?.length > 0
             ?
-            <div className='h-screen max-w-screen'>
+            <div className='h-auto max-w-screen'>
               <div className="product mx-auto max-w-[70rem] px-2 sm:px-0">
                 <section className='text-white w-full py-2'>
                   <div className='w-full text-center'>
