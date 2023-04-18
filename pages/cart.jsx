@@ -79,7 +79,7 @@ const Cart = () => {
               </div>
             </div>
             :
-            <div className='flex items-center justify-center flex-col flex-wrap h-[90dvh] my-2'>
+            <div className='flex items-center justify-center flex-col flex-wrap h-[90dvh]'>
               <span className='font-bold text-[1.05rem] tracking-[2px] text-center text-orange-600'>Cart is empty</span>
               <span className='font-bold text-[1.05rem] tracking-[2px] text-center text-white'><strong className='text-green-500 cursor-pointer underline' onClick={() => router.push("/")}>Shop</strong> now to get started.</span>
             </div>
