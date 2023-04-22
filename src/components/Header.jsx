@@ -37,7 +37,7 @@ const Header = () => {
           className='w-full h-14 rounded-[3px] px-1 text-[1.1rem] placeholder:text-[0.8rem] sm:placeholder:text-[1rem] placeholder:font-medium placeholder:tracking-[1px] focus:outline-none'
           type="search"
           name="search"
-          placeholder='Search for the products' />
+          placeholder='Search for colors now' />
       </div>
       <div className='px-1 flex items-center justify-center gap-x-1 sm:gap-x-0'>
         <Link href={"/cart"}>

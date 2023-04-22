@@ -6,9 +6,13 @@ import useDebounce from '../hooks/useDebounce';
 
 const Home = () => {
   const { searchTerm } = useContext(CartContext);
-  const debounceTerm = useDebounce(searchTerm, 300);
+  const debounceTerm = useDebounce(searchTerm.value, 300);
   const filteredProducts = products.filter(product => product?.name.toLowerCase().includes(debounceTerm.toLowerCase()));
-  return debounceTerm.length > 0 ? <Filtered data={filteredProducts} /> : <Products />
+  useEffect(() => {
+    searchTerm.value = '';
+  }, []);
+
+  return searchTerm.value.length > 0 ? <Filtered data={filteredProducts} /> : <Products />
 }
 
 export default Home

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useEffect } from 'react';
 import { products } from '../../data/products';
 import Link from 'next/link';
 

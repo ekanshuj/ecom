@@ -4,10 +4,11 @@ import useLocalStorage from "../hooks/useLocalStorage";
 const CartContext = createContext();
 export const CartProvider = ({ children }) => {
   const [cartProducts, setCartProducts] = useLocalStorage("cartItems", []);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchTerm, setSearchTerm] = useState({ value: '' });
+  // console.log(searchTerm);
 
   const textVal = (val) => {
-    setSearchTerm(val)
+    setSearchTerm({ value: val });
   };
 
   const cartCount = cartProducts?.reduce((acc, curr) => curr.count + acc, 0);
