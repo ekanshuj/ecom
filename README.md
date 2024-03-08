@@ -1,7 +1,7 @@
-<h1>Next.js Color Ecommerce Website</h1>
+<h1>E-commerce Application</h1>
 
 
-This is a color ecommerce website built with Next.js, using Firebase for authentication, Stripe for secure payment, and Tailwind CSS for styling.
+This is an e-commerce [color] application built with Next.js, using Firebase for authentication, Stripe for secure payment, and Tailwind CSS for styling.
 
 <h3>Installation</h3>
 
@@ -10,7 +10,7 @@ To run this project locally, you can follow these steps:
 1. Clone this repository to your local machine
 2. Navigate to the project directory: <strong>`cd ecom`</strong>
 3. Install dependencies: <strong>`npm install`</strong>
-4. Create a .env.local file at the root of the project, and add your Firebase and Stripe API keys:
+4. Create an .env.local file at the root of the project, and add your Firebase and Stripe API keys:
 
                  NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=<your-stripe-publishable-key><br>
                  STRIPE_SECRET_KEY=<your-stripe-secret-key><br>
@@ -25,7 +25,7 @@ To run this project locally, you can follow these steps:
 
 
 <h3>Usage</h3>
-After running the app, you should be able to see the color ecommerce website in your browser at http://localhost:3000. You can sign up or log in with your Google account using Firebase authentication, browse and purchase various colors, and make secure payments with Stripe.
+After running the app, you should be able to see the e-commerce website in your browser at http://localhost:3000 [or according to your preferred build tool].
 
 <h3>Technologies Used</h3>
 This project uses the following technologies:
